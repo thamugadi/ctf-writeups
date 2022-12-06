@@ -5,10 +5,6 @@ from binascii import *
 import os
 import zipfile
 def bb(b, z):
-    try: os.remove("spell.txt")
-    except: pass
-    try: os.remove("spell.zip") 
-    except: pass
     with open("spell.txt", "wb") as f: f.write(b)
     zf = zipfile.ZipFile(z, "w") ; zf.write("spell.txt") ; zf.close()
     with open(z, "r") as f: zipped_data = f.read()
